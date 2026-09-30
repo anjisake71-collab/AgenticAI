@@ -1,0 +1,70 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🔄 Agent Loop (Demo 0 - Compound Interest)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_agent_loop.py",
+      "args": ["--demo", "0"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {}
+    },
+    {
+      "name": "⚡ ReAct Agent (Demo 0 - Investment Report)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_react_agent.py",
+      "args": ["--demo", "0", "--trajectory"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {}
+    },
+    {
+      "name": "🔄 Agent Loop (Demo 1 - Fibonacci Code)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_agent_loop.py",
+      "args": ["--demo", "1"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "⚡ ReAct Agent (Demo 1 - Multiplication Table)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_react_agent.py",
+      "args": ["--demo", "1", "--trajectory"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "🔄 Agent Loop (Demo 2 - Directory Report)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_agent_loop.py",
+      "args": ["--demo", "2"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "⚡ ReAct Agent (Demo 2 - Code Summary)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_react_agent.py",
+      "args": ["--demo", "2", "--trajectory"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "🛠 Custom Task (edit args below)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_react_agent.py",
+      "args": ["--task", "What is 25% of 8400? Show working and save to workspace/result.txt"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

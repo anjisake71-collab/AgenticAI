@@ -1,0 +1,62 @@
+version: "3.9"
+
+# ─── Agentic AI — Local Development Stack ─────────────────────────────────────
+#
+# Services:
+#   agent-loop   → runs the Perceive→Think→Act→Observe agent
+#   react-agent  → runs the Thought/Action/Observation agent
+#   api          → FastAPI wrapper for both agents (port 8000)
+#
+# Usage:
+#   docker compose up --build          # start everything
+#   docker compose run react-agent     # run ReAct agent once
+#   docker compose run agent-loop      # run Agent Loop once
+#   docker compose up api              # start REST API only
+
+services:
+
+  # ── Agent Loop (one-shot run) ────────────────────────────────────────────────
+  agent-loop:
+    build: .
+    image: agentic-ai:latest
+    container_name: agent-loop
+    command: python run_agent_loop.py --demo 0
+    env_file: .env
+    volumes:
+      - ./workspace:/app/workspace
+      - ./logs:/app/logs
+      - ./memory/store:/app/memory/store
+    restart: "no"
+
+  # ── ReAct Agent (one-shot run) ───────────────────────────────────────────────
+  react-agent:
+    build: .
+    image: agentic-ai:latest
+    container_name: react-agent
+    command: python run_react_agent.py --demo 0 --trajectory
+    env_file: .env
+    volumes:
+      - ./workspace:/app/workspace
+      - ./logs:/app/logs
+      - ./memory/store:/app/memory/store
+    restart: "no"
+
+  # ── FastAPI REST wrapper ─────────────────────────────────────────────────────
+  api:
+    build: .
+    image: agentic-ai:latest
+    container_name: agent-api
+    command: python api_server.py
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./workspace:/app/workspace
+      - ./logs:/app/logs
+      - ./memory/store:/app/memory/store
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

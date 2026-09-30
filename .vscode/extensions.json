@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.pylance",
+    "charliermarsh.ruff",
+    "mikestead.dotenv",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
